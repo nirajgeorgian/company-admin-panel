@@ -149,26 +149,26 @@ $(function() {
   })
 })
 
-function validateText(id) {
-  if ($('#'+id).val() == null || $('#'+id).val() == "") {
-    var div = $("#"+id).closest('div');
-    div.addClass("has-error")
-    return false;
-  } else {
-    var div = $("#"+id).closest('div');
-    div.removeClass("has-error")
-    return true
-  }
-}
-
-$(document).ready(function() {
-  $('#submitBtn').click(function() {
-    if(!validateText("email")) {
-      return false;
-    }
-    $('form#emailForm').submit()
-  })
-})
+// function validateText(id) {
+//   if ($('#'+id).val() == null || $('#'+id).val() == "") {
+//     var div = $("#"+id).closest('div');
+//     div.addClass("has-error")
+//     return false;
+//   } else {
+//     var div = $("#"+id).closest('div');
+//     div.removeClass("has-error")
+//     return true
+//   }
+// }
+//
+// $(document).ready(function() {
+//   $('#submitBtn').click(function() {
+//     if(!validateText("email")) {
+//       return false;
+//     }
+//     $('form#emailForm').submit()
+//   })
+// })
 
 
 $(function() {
