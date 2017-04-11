@@ -1,7 +1,7 @@
 module.exports = {
   // database: 'mongodb://localhost:27017/mail',
   database: 'mongodb://root:dodo@ds157980.mlab.com:57980/slickaccount',
-  port: 3030,
+  port: 3030 || process.env.PORT,
   secretKey: 'ninni@N9',
   mailOption: {
     auth: {
