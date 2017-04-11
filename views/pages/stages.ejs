@@ -69,7 +69,7 @@
               <!-- </form> -->
                 <td><input type="number" class="form-control data-enable" value="<%= stages[i].order %>" min="0" disabled="false"></form></td>
                 <td><a href="/admin/stage/edit/<%= stages[i].stage %>" class="btn btn-default stage_input" name="<%= stages[i].stage %>">Edit</a></td>
-                <td><a href="/admin/stages/delete/<%= stages[i]._id %>" class="btn btn-danger stage_input" name="<%= stages[i]._id %>">Delete</a></td>
+                <td><a href="/admin/stages/delete/<%= stages[i]._id %>" class="btn btn-danger stage_input stage_delete" name="<%= stages[i]._id %>">Delete</a></td>
             </tr>
             <% } %>
           </tbody>

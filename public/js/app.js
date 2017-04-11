@@ -208,6 +208,13 @@ $(function() {
     })
 })
 
+$(function() {
+  $('.stage_delete').on('click', function(e) {
+    // e.preventDefault()
+    confirm("Do you really want to delete ?")
+  })
+})
+
 
 
 
