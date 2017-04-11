@@ -1,0 +1,80 @@
+<%- layout('layout') %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3"><br>
+      <% if (success.length > 0 ) { %>
+      <div class="col-sm-12 col-xs-12 col-lg-12">
+        <div class="alert alert-success alert-dismissible text-center" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong> <%= success %> </strong>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3"><br>
+      <% if (failure.length > 0 ) { %>
+      <div class="col-sm-12 col-xs-12 col-lg-12">
+        <div class="alert alert-danger alert-dismissible text-center" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong> <%= failure %> </strong>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <form action="" method="post">
+
+                <th class="text-center"> <span class="badge stages"> Stages </span> <input type="text" name="stages" class="form-control" placeholder="Stages goes here"></th>
+
+              <th class="text-center"> <span class="badge stages"> Order </span><input type="number" name="order" value="order" class="form-control" min="0" placeholder="Enter stage number"></th>
+              <th><button type="submit" class="btn btn-default">Add</button></th>
+            </form>
+          </tr>
+        </thead>
+        </table
+      </div>
+    </div>
+    <% if(stages.length == 0) { %>
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+          <h3 class="text-center">No Stages. Please create one</h3>
+    <% } else { %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <form action="" method="post">
+                <th class="text-center"> <span class=" stages"> Stages </span></th>
+                <th class="text-center"> <span class=" stages"> Order </span></th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </form>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < stages.length; i++) { %>
+            <tr>
+              <!-- <form class="" action="index.html" method="post"> -->
+                <td class="stages_edit">
+                  <form id="#stageForm" method="POST" name="stageForm">
+                    <input type="text" class="form-control data-enable" value="<%= stages[i].stage %>" disabled="false">
+                  </form>
+                </td> <!-- name="<%= stages[i].stage %>" -->
+              <!-- </form> -->
+                <td><input type="number" class="form-control data-enable" value="<%= stages[i].order %>" min="0" disabled="false"></form></td>
+                <td><a href="/admin/stage/edit/<%= stages[i].stage %>" class="btn btn-default stage_input" name="<%= stages[i].stage %>">Edit</a></td>
+                <td><a href="/admin/stages/delete/<%= stages[i]._id %>" class="btn btn-danger stage_input" name="<%= stages[i]._id %>">Delete</a></td>
+            </tr>
+            <% } %>
+          </tbody>
+            </table>
+      </div>
+    </div>
+    <% } %>
+    </div>

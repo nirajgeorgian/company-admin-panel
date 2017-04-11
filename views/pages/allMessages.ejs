@@ -1,0 +1,46 @@
+<% layout('layout') -%>
+<div class="container">
+  <div class="row">
+    <% if (failure.length > 0 ) { %>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <div class="alert alert-danger alert-dismissible text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong> <%= failure %> </strong>
+      </div>
+    </div>
+    <% } %>
+  <div class="row">
+    <!-- <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3"> -->
+    <% if (found.length != 0) { %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Message</th>
+            <th>Tagged As</th>
+            <th>Message Id</th>
+            <th>Not Tagged As</th>
+            <th>Scheduled Date</th>
+            <th>Edit</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i = 0; i < found.length; i++) { %>
+          <tr>
+              <td><%= found[i].emailTitle %></td>
+              <td><%= found[i].taggesAs %></td>
+              <td><%= found[i]._id %></td>
+              <td><%= found[i].notTaggedAs %></td>
+              <td><%= found[i].ScheduledDate %></td>
+              <td><a href="/admin/send/message/<%= found[i].emailTitle %>" class="btn btn-default">Edit</a></td>
+              <td><a href="/admin/messages/delete/<%= found[i].emailTitle %>" class="btn btn-danger">Delete</a></td>
+            </tr>
+            <% } %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <h3 class="text-center">No messages are configured please create one <a href="/admin/send/message">click here</a></h3>
+      <% } %>
+    </div>
+  <!-- </div> -->
+</div>

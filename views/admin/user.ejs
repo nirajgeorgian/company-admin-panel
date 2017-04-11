@@ -1,0 +1,11 @@
+<% layout('layout') %>
+<div class="container">
+  <div class="admin_profile_details">
+    <img class="admin_photo" src="http://lorempixel.com/850/280/nightlife/5/" alt="admin_photo">
+    <img class="admin_profile thumbnail" src="<%= user.admin_profile_pic %>" alt="admin_profile">
+    <div class="admin_details">
+      <h1><%= user.admin_username %></h1>
+      <p>User information goes here.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<%- layout('layout') %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+      <h2 class="text-center">Email sending message</h2>
+      <hr>
+      <form action="#" method="POST" autocomplete="off">
+        <div class="form-group">
+          <label for="emailtitle" class="badge stages">Your email custom heading</label>
+          <input type="text" class="form-control" id="emailtitle" placeholder="Email sending heading goes here." name="emailtitle" value="<%= found[0].emailTitle %>">
+        </div>
+        <hr>
+        <div class="row">
+          <div class="form-group col-md-6 col-sm-6">
+            <label for="sendto" class="badge stages">Send to</label>
+            <input type="text" class="form-control" id="sendto" placeholder="Tagged as" name="taggedas" value="<%= found[0].taggesAs %>">
+          </div>
+          <div class="form-group col-md-6 col-sm-6">
+            <label for="notsendto" class="badge stages">And not send to</label>
+            <input type="text" class="form-control" id="notsendto" placeholder="Not Tagged as" name="nottaggedas" value="<%= found[0].notTaggedAs %>">
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="schedule" class="badge stages">Schedule</label>
+          <div class="row">
+            <div class="col-md-1 col-sm-1">
+              <h4>After</h4>
+            </div>
+            <div class="col-md-5 col-sm-5">
+              <input type="text" class="form-control" id="schedule" placeholder="No. of days" name="numofdays" value="<%= found[0].numberOfDays %>">
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <h4>days of inclusion to database</h4>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h4 class="text-center">Message</h4>
+        <p>Use {{{fname}}} for first name, {{{lname}}} for last name, {{{company for company}}}</p>
+        <div class="form-group">
+          <input type="text" class="form-control" name="mailHeading" value="SlickAccount - The profitability software for {{{company}}}">
+          <hr>
+          <div class="row">
+            <div class="col-md-2 col-sm-2">
+              <p>{{fname}} default:</p>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <input type="text" class="form-control" name="fname" placeholder="John" name="fname" value="<%= found[0].fName %>">
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <p>{{lname}} default:</p>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <input type="text" class="form-control" name="lname" placeholder="Doe" name="lname" value="<%= found[0].lName %>">
+            </div>
+            <div class="col-md-5 col-sm-5">
+              <p>{{company}} default:</p>
+            </div>
+            <div class="col-md-7 col-sm-7">
+              <input type="text" class="form-control" name="company" placeholder="Slickaccount" name="company" value="<%= found[0].company %>">
+            </div>
+          </div>
+        </div>
+        <textarea rows="8" cols="80" id="messageMail" name="mailmessage"><%= found[0].createMailMessage %></textarea>
+        <input type="submit" class="btn btn-default" value="submit">
+      </form>
+    </div>
+</div>
+</div>
