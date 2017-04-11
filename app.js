@@ -81,10 +81,10 @@ app.use(function(req, res, next) {
 	next();
 });
 
-// app.use(function(err, req, res, next) {
-// 	res.status(500);
-// 	res.send("Internal server error");
-// });
+app.use(function(err, req, res, next) {
+	res.status(500);
+	res.send("Internal server error");
+});
 
 // Server configuration
 var server = app.listen(secret.port, (err) => {
