@@ -55,4 +55,7 @@ router.route("/admin/send/immediately")
 router.route("/mails")
             .get(isAuthenticated, adminController.allmails)
 
+router.get("/upload", isAuthenticated, adminController.uploadCsv)
+router.post("/upload", isAuthenticated, adminController.uploadCsvPost)
+
 module.exports = router

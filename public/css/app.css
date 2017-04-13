@@ -83,6 +83,9 @@ a#removeStage {
   color: white;
 }
 
+#upload-input {
+  display: none;
+}
 
 
 
