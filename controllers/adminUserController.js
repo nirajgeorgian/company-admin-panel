@@ -50,7 +50,6 @@ module.exports = {
         adminUser.admin_profile_pic = adminUser.gravatar()
 
         AdminUserSchema.findOne({admin_email: req.body.email}, (err, adminExists) => {
-          // if (err) return err;
           if (adminExists) {
             req.flash('errors',"Admin with that email address already exists")
             return res.redirect('/admin/signup')
@@ -84,12 +83,7 @@ module.exports = {
           emailClient.save((err) => {
             if (err) return next(err)
             req.flash("success", "An confirmation email was sended to "+ adminUser.admin_email+".")
-            // var stages = new StageSchema()
-            // stages.save((err) => {
-            //   if (err) return next(err)
-            // })
             done(err, 'done')
-            // return res.redirect('/admin/signup')
           })
         })
       }
@@ -110,7 +104,6 @@ module.exports = {
     failureFlash: true
   }),
   loginGet:(req, res) => {
-    // if (req.user) return res.redirect('/')
     res.render('forms/login', {
       message: req.flash('loginMessage'),
       success: req.flash('success'),
@@ -182,8 +175,6 @@ module.exports = {
           to: adminUser.admin_email,
           from: 'admin@nirajgeorgian.me',
           subject: 'Your password has been successfully reset.',
-          // text: 'Hello \n\n\n'+
-          // 'Your password for email '+ adminUser.admin_email+ ' has been successfully reset'
           html: ejs.render(emailTempRaw, {username: username, address: address})
         }
         smtpTransport.sendMail(mailOptions, (err) => {
@@ -231,10 +222,6 @@ module.exports = {
           to: adminUser.admin_email,
           from: 'admin@nirajgeorgian.me',
           subject: 'Your Password reset token.',
-          // text: 'You are receiving this because someone requested password reset \n'+
-          // 'Please click on the link below to reset your password \n'+
-          // 'http://'+req.headers.host+'/reset/'+token+'\n\n'+
-          // 'If you did not requested for password, Please ignore this email. \n\n'
           html: ejs.render(emailTempRaw,{token: resetToken})
         }
         smtpTransport.sendMail(mailOptions, (err) => {
@@ -322,12 +309,6 @@ module.exports = {
         mailMessage.company = company
         mailMessage.createMailMessage = createMailMessage
         mailMessage.ScheduledDate = ScheduledDate
-        // mailMessage.SendingTo = result.user_email
-        // mailMessage.save((err) => {
-        //   if (err) return next(err)
-        //   req.flash("success", "Successfully added message configuration.")
-        //   res.redirect("/admin/send/message")
-        // })
         callback(null, result, mailMessage)
       }, function(result, mailMessage, callback) {
         var filterEmail = result.map(function(e) {
@@ -348,8 +329,6 @@ module.exports = {
     mailMessageSchema.find({"emailTitle": messageTitle}, (err, found) => {
       if (err) return next(err)
       res.render("forms/sendMessageView", {
-        found: found
-      // res.json(found)
       })
     })
   },
@@ -361,9 +340,7 @@ module.exports = {
           failure: req.flash("failure"),
           moment: moment
         })
-        // res.json(found)
       })
-    // })
   },
   deleteMessage: (req, res, next) => {
     var messageTitle = req.params.messageTitle
@@ -389,8 +366,6 @@ module.exports = {
     var company = req.body.company
     var createMailMessage = req.body.createMailMessage
     var CurrentDate = moment().format()
-    // var totalHours = numberOfDays * 24
-    // var ScheduledDate = moment(CurrentDate).add(totalHours, 'hours')
     singleUserModel.find({$and:[{"user_tagList.name":taggesAs}, {"user_tagList.name":{$ne: notTaggedAs}}] }, (err, result) => {
       if (err) return next(err)
       var userEmail = result.map(function(email) {
@@ -405,11 +380,8 @@ module.exports = {
          }
         smtpTransport.sendMail(msg, (err) => {
             if (err) return next(err)
-
-
             EmailSchema.findOne({created_by: req.user.admin_email}, (err, foundMail) => {
               if (err) return next(err)
-              // res.josn(foundMail)
               foundMail.emailSended.push({
                 id: req.user._id,
                 message: msg.text,
@@ -432,7 +404,6 @@ module.exports = {
                   userForEmail.save((err) => {
                     if (err) return next(err)
                     console.log(sended);
-                    // res.json(sended)
                     req.flash("success", "Your filtered mail has been successfully sended.")
                     res.redirect("/mails")
                   })
@@ -450,7 +421,6 @@ module.exports = {
         emails: result,
         success: req.flash("success")
       })
-      // res.json(result[7].mailMessage)
     })
   },
   showUsers: (req, res, next) => {
@@ -487,21 +457,3 @@ module.exports = {
     res.render("pages/upload")
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//

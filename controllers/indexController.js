@@ -5,6 +5,7 @@ var showdown  = require('showdown')
 var converter = new showdown.Converter()
 var htmlToText = require('html-to-text');
 var smtpTransport = nodemailer.createTransport(sgTransport(secret.mailOption))
+
 //Custom helper function
 var helperFunction = require('../helpers/helperFunction')
 var User = require('../model/userSchema')
@@ -35,7 +36,6 @@ module.exports = {
       }
       smtpTransport.sendMail(mailOptions, (err, sended) => {
         if (err) return next(err)
-        // var mail = new Mail()
         Emails.findOne({created_by: req.user.admin_email}, (err, foundMail) => {
           if (err) return next(err)
           foundMail.emailSended.push({
@@ -64,7 +64,6 @@ module.exports = {
               })
             })
           })
-          // res.json(foundMail)
         })
        })
     })
@@ -83,11 +82,9 @@ module.exports = {
         var onlyTags = totalTags.map(function(tag_name) {
           return tag_name.name
         })
-        // res.json(onlyTags)
         var totalMails = userFound.user_admin_email
         StagesModel.find({}, (err, stagesFoung) => {
           if (err) return next(err)
-          // res.json(userFound)
           res.render('pages/user', {
             userTasks: userFound.user_tasks,
             userFound: userFound,

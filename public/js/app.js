@@ -111,43 +111,18 @@ $(function() {
 })
 
 $(function() {
-  $('#sendto').click(function(e) {
+  $('#sendto, #tag, #tagSearch, #notsendto').click(function(e) {
     $.getJSON("/api/tags", function(data) {
       var onlyTags = data.map(function(tags) {
         return tags.tag_name
       })
-      $('#sendto').autocomplete({
+      $('#sendto, #tag, #tagSearch, #notsendto').autocomplete({
         source: onlyTags
       })
     })
   })
 })
 
-$(function() {
-  $('#tagSearch').click(function(e) {
-    $.getJSON("/api/tags", function(data) {
-      var onlyTags = data.map(function(tags) {
-        return tags.tag_name
-      })
-      $('#tagSearch').autocomplete({
-        source: onlyTags
-      })
-    })
-  })
-})
-
-$(function() {
-  $('#notsendto').click(function(e) {
-    $.getJSON("/api/tags", function(data) {
-      var onlyTags = data.map(function(tags) {
-        return tags.tag_name
-      })
-      $('#notsendto').autocomplete({
-        source: onlyTags
-      })
-    })
-  })
-})
 $(function() {
   $('.tagAdd').keyup(function(e) {
     console.log("clicked on tag adding box")
@@ -161,28 +136,6 @@ $(function() {
     })
   })
 })
-
-// function validateText(id) {
-//   if ($('#'+id).val() == null || $('#'+id).val() == "") {
-//     var div = $("#"+id).closest('div');
-//     div.addClass("has-error")
-//     return false;
-//   } else {
-//     var div = $("#"+id).closest('div');
-//     div.removeClass("has-error")
-//     return true
-//   }
-// }
-//
-// $(document).ready(function() {
-//   $('#submitBtn').click(function() {
-//     if(!validateText("email")) {
-//       return false;
-//     }
-//     $('form#emailForm').submit()
-//   })
-// })
-
 
 $(function() {
   $(".stages_edit")
@@ -208,7 +161,6 @@ $(function() {
                   console.log(json);
                 }
             })
-
           })
         }
       })
@@ -227,42 +179,3 @@ $(function() {
     confirm("Do you really want to delete ?")
   })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// comment just to have some space
-
-
-
-
-
-
-
-
-//

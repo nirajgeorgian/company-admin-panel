@@ -9,10 +9,6 @@ module.exports = {
         if (err) return next(err)
         tagRoute.find({}, (err, allTags) => {
           if (err) return next(err)
-          // var admin_user = req.user.admin_username
-          // var filterTags = allTags.filter(function(tag) {
-          //   return (tag.tagList.tag_created_by == admin_user)
-          // })
           if(allTags.length > 0) {
             res.render('pages/tags',{
               tags: allTags,
@@ -109,14 +105,11 @@ module.exports = {
                       return res.redirect('/')
                     })
                   })
-                // res.json("if statement")
                 } else {
                   // Tag alreadt present to it
                   req.flash("failure", "Tag " + req.body.tagList + " is already present to " + req.body.email)
                   return res.redirect('/')
-                // res.json("else block")
                 }
-                // res.json(userWthTag)
               })
             } else {
               // Update tags inside both the user and well as tags

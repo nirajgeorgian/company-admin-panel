@@ -68,7 +68,6 @@ module.exports = {
             req.flash("failure", "Stage already assigned to the user")
             res.redirect("/user/"+req.body.user_username)
           }
-          // res.json(indexOfStage)
           callback(null, 'done')
         }
       ], function(err, result) {
@@ -78,7 +77,6 @@ module.exports = {
   },
   removeStage: (req, res, next) => {
     var stage_id = req.params.stage_id
-    // res.json(stage_id)
     userModel.find({_id: req.body._id}, (err, found) => {
       if (err) return next(err)
       res.json(found)
@@ -89,10 +87,6 @@ module.exports = {
     var stageData = req.body.stage
     stagesModel.update({stage: stagename},{$set: {'stage': stageData}}, (err, found) => {
       if (err) return next(err)
-      // res.json({
-      //   "stagename": stagename,
-      //   "stageData": stageData
-      // })
       return res.redirect("/admin/stages")
     })
   },
@@ -111,7 +105,6 @@ module.exports = {
         return res.redirect("/admin/stages")
       })
     })
-    // res.json("success")
   },
   stageApi: (req, res, next) => {
     stagesModel.find({}, (err, found) => {
@@ -120,24 +113,3 @@ module.exports = {
     })
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  comment

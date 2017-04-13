@@ -16,6 +16,6 @@ router.route("/admin/stage/edit/:stageName")
 
 router.get("/admin/stages/delete/:stage_id", isAuthenticated, stagesController.deleteStage)
 router.get("/api/stages", isAuthenticated, stagesController.stageApi)
-// router.get('/admin/stages', stagesController.getStages)
+
 
 module.exports = router

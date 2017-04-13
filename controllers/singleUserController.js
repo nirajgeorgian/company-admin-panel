@@ -62,7 +62,6 @@ module.exports = {
         foundUser.save((err) => {
           if (err) return next(err)
           var newTask = new TasksTotal()
-          // newTask.user_tasks.push({
             newTask.date = date
             newTask.subject = subject
             newTask.task = htmlToText.fromString(message)
@@ -70,7 +69,6 @@ module.exports = {
             newTask.created_to = foundUser.user_email
             newTask.created_on = Date.now()
             newTask.done = false
-          // })
           newTask.save((err) => {
             if (err) return next(err)
             req.flash("success", "Successfully added your task")
