@@ -18,7 +18,14 @@ const TagsSchema = require('../model/tagsModel')
 var StageSchema = require('../model/stagesModel')
 var mailMessageSchema = require('../model/mailMessageSchema')
 var emailListSchema = require('../model/emailListSchema')
-var csv = require('csvtojson')
+var multer = require('multer')
+var csv = require('ya-csv');
+var upload = multer({
+  dest: "../uploads/",
+  fileFilter: function(req, res, cb) {
+    cb(null, true)
+  }
+}).single('file')
 
 var smtpTransport = nodemailer.createTransport(sgTransport(secret.mailOption))
 
@@ -452,46 +459,32 @@ module.exports = {
       res.json(result)
     })
   },
-  uploadCsv: (req, res, next) => {
-    res.render("pages/upload")
-  },
-  uploadCsvPost: (req, res, next) => {
-      async.waterfall([
-        function(callback) {
-          var form = new formidable.IncomingForm()
-          form.encoding = 'utf-8';
-          form.multiples = true;
-          form.uploadDir = path.join(__dirname, '/../uploads')
-          form.on('file', function(field, file) {
-            fs.rename(file.path, path.join(form.uploadDir, file.name))
-          })
-          form.on('error', function(err) {
-            console.log('An error has occured: \n' + err);
-          })
-          callback(null, form)
-        },
-        function(form, callback) {
-          form.parse(req, function(err, fields, files) {
-            // File contains data for manipulating
-            const csvFilePath = path.dirname(files['uploads'].path) + files['uploads'].name
-            // console.log(JSON.stringify(csvFilePath))
-            callback(null, csvFilePath, form)
-        })
-      },
-      function(csvFilePath, form,callback) {
-
-
-        callback(null, form, csvFilePath)
-      },
-      function(csvFilePath, form, callback) {
-        form.on('end', function() {
-          res.end('success');
-        });
-        callback(null, 'done')
+  uploadPost: (req, res, next) => {
+    upload(req, res, function(err) {
+      if (err) {
+        console.log(err.stack)
+        return res.end("error uploading files", err)
       }
-      ], function(err) {
-        if (err) return next(err)
+      var reader = csv.createCsvFileReader(req.file.path, {columnsFromHeader: true})
+      reader.addListener('data', function(data) {
+
+        var singleuser = new singleUserModel()
+        singleuser.user_first_name = data.user_first_name
+        singleuser.user_last_name = data.user_last_name
+        singleuser.user_username = data.user_username
+        singleuser.user_email = data.user_email
+        singleuser.user_created_at = new Date()
+        singleuser.user_updated_at = new Date()
+
+        singleuser.save((err, saved) => {
+          if (err) return next(err)
+        })
       })
+      res.redirect("/")
+    })
+  },
+  uploadGet: (req, res, next) => {
+    res.render("pages/upload")
   }
 }
 

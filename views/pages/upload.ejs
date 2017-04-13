@@ -3,19 +3,10 @@
 <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <span class="glyphicon glyphicon-cloud-upload"></span>
-            <h2>File Uploader</h2>
-            <h4>Slickaccount</h4>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar"></div>
-            </div>
-            <button class="btn btn-lg upload-btn" type="button">Upload File</button>
-          </div>
-        </div>
+      <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" name="submit" value="submit">
+      </form>
       </div>
     </div>
   </div>
-
-  <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>

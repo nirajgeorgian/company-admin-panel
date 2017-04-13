@@ -1,6 +1,5 @@
 var router = require('express').Router()
 var isAuthenticated = require('../helpers/authenticated').isAuthenticated
-
 // controllers
 var adminController = require('../controllers/adminUserController')
 
@@ -54,8 +53,8 @@ router.route("/admin/send/immediately")
 
 router.route("/mails")
             .get(isAuthenticated, adminController.allmails)
-
-router.get("/upload", isAuthenticated, adminController.uploadCsv)
-router.post("/upload", isAuthenticated, adminController.uploadCsvPost)
+router.route("/upload")
+            .get(isAuthenticated, adminController.uploadGet)
+            .post(isAuthenticated, adminController.uploadPost)
 
 module.exports = router
