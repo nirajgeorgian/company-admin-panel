@@ -16,15 +16,15 @@ var secret = require('./config/secret')
 var app = express()
 
 // Use helemt for secure
-app.use(helmet.frameguard({
-  action: 'deny'
-}))
-app.use(helmet.hidePoweredBy({
-  setTo: 'riti'
-}))
-app.use(helmet.noSniff())
-app.use(helmet.xssFilter())
-app.use(helmet.ieNoOpen())
+// app.use(helmet.frameguard({
+//   action: 'deny'
+// }))
+// app.use(helmet.hidePoweredBy({
+//   setTo: 'riti'
+// }))
+// app.use(helmet.noSniff())
+// app.use(helmet.xssFilter())
+// app.use(helmet.ieNoOpen())
 
 // app.set('trust proxy', 1) // trust first proxy
 app.engine('ejs', engine)
