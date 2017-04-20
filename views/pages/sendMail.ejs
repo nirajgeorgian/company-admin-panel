@@ -9,52 +9,27 @@
       </div>
     </div>
     <% } %>
-  <% if(emails.length > 0) { %>
-  <h2 class="text-center">All Mail's sended</h2><hr>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Sr No. : </th>
+        <th>Sr No.</th>
         <th>Subject</th>
-        <th>To Email: </th>
-        <th>From Email: </th>
+        <th>Message</th>
+        <th>Message To:</th>
+        <th>Date Of Sending</th>
       </tr>
     </thead>
     <tbody>
-      <% for(var i = 0; i < emails.length; i++) { %>
-        <tr>
-          <td><%= ++i %></td>
-          <td><a href="#" data-toggle="modal" data-target="#myModal"><%= emails[i].subject %></a></td>
-          <td><%= emails[i].to %></td>
-          <td><%= emails[i].from %></td>
-        </tr>
-        <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center">Email Detail's</h4>
-              </div>
-              <div class="modal-body">
-                <!-- <div class="container"> -->
-                  <p><span class="badge">Message _id: </span> <%= emails[i]._id %></p>
-                  <p><span class="badge">From: </span> <%= emails[i].from %></p>
-                  <p><span class="badge">From: </span> <%= emails[i].to %></p>
-                  <p><span class="badge">Subject: </span> <%= emails[i].subject %></p>
-                  <p><span class="badge">Message: </span> <%= emails[i].mailMessage %></p>
-                  <p><span class="badge">Date Of Sending:</span> <%= (emails[i].dateOfSending).getDate() + ' - ' + (emails[i].dateOfSending).getMonth() + ' - ' + (emails[i].dateOfSending).getFullYear() %></p>
-                <!-- </div> -->
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <% for(var i = 0; i < emails.length; i++) {%>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= emails[i].subject %></td>
+        <td><%= emails[i].message %></td>
+        <td><%= emails[i].to %></td>
+        <td><%= emails[i].dateOfSending.getDate() %> - <%= emails[i].dateOfSending.getMonth() %> - <%= emails[i].dateOfSending.getFullYear() %></td>
+      </tr>
       <% } %>
     </tbody>
   </table>
-  <% } else { %>
-  <h2 class="text-center">No mail sended yet</h2>
-  <% } %>
+  </div>
 </div>

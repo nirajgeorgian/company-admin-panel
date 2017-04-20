@@ -24,30 +24,33 @@
       <% if (stages.length == 0) { %>
           <h3 class="text-center">No stages yet created</h3>
       <% } else { %>
-        <form action="/admin/user/addstages" class="text-center" method="post">
-        <div class="row">
-          <div class="col-sm-12 col-md-12 colxs-12">
-              <label class="badge stages">Stages</label>
-              <select class='form-control' name="user_stages">
-            <% for(var i = 0; i < stages.length; i++) { %>
-                  <option value="<%= stages[i]._id %>"><%= stages[i].stage %></option>
-                  <% } %>
-                </select>
-          </div><hr>
-        <div class="col-sm-8 col-md-8 col-xs-8 input_date">
-          <div class="form-group"> <!-- Date input -->
-            <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" type="text"/>
-          </div>
+        <div>
+          <form action="/admin/user/addstages" class="text-center" method="post">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 colxs-12">
+                <label class="badge stages">Stages</label>
+                <select class='form-control' name="user_stages">
+                  <% for(var i = 0; i < stages.length; i++) { %>
+                    <option value="<%= stages[i]._id %>"><%= stages[i].stage %></option>
+                    <% } %>
+                  </select>
+                </div><hr>
+                <div class="col-sm-8 col-md-8 col-xs-8 input_date">
+                  <div class="form-group"> <!-- Date input -->
+                    <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" type="text"/>
+                  </div>
+                </div>
+                <div class="form-group input_date">
+                  <input type="hidden" name="_id" value="<%= userFound._id %>">
+                  <input type="hidden" name="user_username" value="<%= userFound.user_username %>">
+                  <input type="submit" class="btn btn-default input_date" value="Submit">
+                </div>
+              </form>
         </div>
-          <div class="form-group input_date">
-            <input type="hidden" name="_id" value="<%= userFound._id %>">
-            <input type="hidden" name="user_username" value="<%= userFound.user_username %>">
-            <input type="submit" class="btn btn-default input_date" value="Submit">
-          </div>
-      </form>
+      </div>
       <% } %>
-    </div>
   </div>
+
     <div class="col-md-5">
       <h3 class="text-center">Tag Form Details</h3>
       <% if (success.length > 0 ) { %>
@@ -134,8 +137,9 @@
       </div>
       <% } %>
     </div>
+
   <% if (userTasks.length == 0)  { %>
-        <h3 class="text-center col-md-4">No task yet assigned</h3>
+      <h3 class="text-center col-md-4">No task yet assigned</h3>
   <% } else { %>
     <div class="col-md-4">
       <table class="table table-hover">
@@ -162,5 +166,4 @@
     </div>
   <% } %>
   </div>
-</div>
 </div>

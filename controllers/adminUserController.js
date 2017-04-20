@@ -15,7 +15,6 @@ const EmailSchema = require('../model/mailModel')
 const TagsSchema = require('../model/tagsModel')
 var StageSchema = require('../model/stagesModel')
 var mailMessageSchema = require('../model/mailMessageSchema')
-var emailListSchema = require('../model/emailListSchema')
 var multer = require('multer')
 var csv = require('ya-csv');
 var upload = multer({
@@ -413,12 +412,13 @@ module.exports = {
     })
   },
   allmails: (req, res, next) => {
-    emailListSchema.find({}, (err, result) => {
+    EmailSchema.find({"created_by": req.user.admin_email}, (err, result) => {
       if (err) return next(err)
       res.render("pages/sendMail", {
-        emails: result,
+        emails: result[0].emailSended,
         success: req.flash("success")
       })
+      // res.json(result[0].emailSended)
     })
   },
   showUsers: (req, res, next) => {
