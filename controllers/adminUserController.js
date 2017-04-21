@@ -184,9 +184,13 @@ module.exports = {
     })
   },
   forgotGet: (req,res) => {
-    res.render('forms/forgot', {
-      error: req.flash('error')
-    })
+    if(!req.user) {
+      res.render('forms/forgot', {
+        error: req.flash('error')
+      })
+    } else {
+      res.redirect("/")
+    }
   },
   forgotPost: (req, res, next) => {
     async.waterfall([
@@ -314,7 +318,7 @@ module.exports = {
         mailMessage.SendingTo = filterEmail
         mailMessage.save((err, data) => {
           if (err) return next(err)
-          res.json(data)
+          res.redirect("/messages")
         })
       }
     ], function(err, result) {

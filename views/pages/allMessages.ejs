@@ -31,7 +31,7 @@
               <td><%= found[i].taggesAs %></td>
               <td><%= found[i]._id %></td>
               <td><%= found[i].notTaggedAs %></td>
-              <td><%= found[i].ScheduledDate %></td>
+              <td><%= found[i].ScheduledDate.getDate() + " - " + found[i].ScheduledDate.getMonth() + " - " + found[i].ScheduledDate.getFullYear() %></td>
               <td><a href="/admin/send/message/<%= found[i].emailTitle %>" class="btn btn-default">Edit</a></td>
               <td><a href="/admin/messages/delete/<%= found[i].emailTitle %>" class="btn btn-danger">Delete</a></td>
             </tr>

@@ -1,7 +1,7 @@
 <% layout('layout') %>
 <div class="container">
   <div class="row">
-    <div class="col-xs-10 col-sm-8 col-md-6 col-xs-offset-2 col-md-offset-3 col-xs-offset-1">
+    <div class="col-xs-11 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 col-xs-offset-1">
       <form action="" role="form" method="post" autocomplete="off">
         <h2>Login here <small>It's free and will be always.</small></h2>
         <hr class="colorgraph col-sm-11 col-md-11 col-xs-9">
@@ -36,10 +36,16 @@
                   </div>
                 </div>
                 <div class="col-xs-10 col-sm-12 col-md-12">
-                  <div class="form-group">
+                  <div class="form-group" style="position: relative;">
                     <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="1">
+                    <a href="/admin/forgot" style="float: right; margin-right: 10px; position: absolute; top:12px; right: 0px;">forgot ?</a>
                   </div>
-                  <hr class="colorgraph">
+                  <!-- <hr class="colorgraph"> -->
+                </div>
+                <div class="col-xs-10 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <a href=""></a>
+                  </div>
                 </div>
                 <!-- <hr class="colorgraph"> -->
                 <div class="col-xs-10 col-sm-6 col-md-6">
