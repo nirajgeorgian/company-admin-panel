@@ -437,25 +437,31 @@ module.exports = {
         console.log(err.stack)
         return res.end("error uploading files", err)
       }
-      var reader = csv.createCsvFileReader(req.file.path, {columnsFromHeader: true})
-      reader.addListener('data', function(data) {
+      if(req.file.mimetype == 'text/csv') {
+        var reader = csv.createCsvFileReader(req.file.path, {columnsFromHeader: true})
+        reader.addListener('data', function(data) {
+          var singleuser = new singleUserModel()
+          singleuser.user_first_name = data.user_first_name
+          singleuser.user_last_name = data.user_last_name
+          singleuser.user_username = data.user_username
+          singleuser.user_email = data.user_email
+          singleuser.user_created_at = new Date()
+          singleuser.user_updated_at = new Date()
 
-        var singleuser = new singleUserModel()
-        singleuser.user_first_name = data.user_first_name
-        singleuser.user_last_name = data.user_last_name
-        singleuser.user_username = data.user_username
-        singleuser.user_email = data.user_email
-        singleuser.user_created_at = new Date()
-        singleuser.user_updated_at = new Date()
-
-        singleuser.save((err, saved) => {
-          if (err) return next(err)
+          singleuser.save((err, saved) => {
+            if (err) return next(err)
+          })
         })
-      })
-      res.redirect("/")
+        res.redirect("/")
+      } else {
+        req.flash("success", "Please select csv format file.")
+        res.redirect(302,"/upload")
+      }
     })
   },
   uploadGet: (req, res, next) => {
-    res.render("pages/upload")
+    res.render("pages/upload", {
+      success: req.flash("success")
+    })
   }
 }
