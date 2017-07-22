@@ -22,6 +22,11 @@
             <% } %>
             <br>
             <div class="row">
+              <% if(tags.length == 0) { %>
+                <div class="col-md-6">
+                  <h3 class="align-center">No Tags available</h3>
+                </div>
+              <% } %>
               <div class="col-md-6">
                 <form action="/tags/add" method="post" id="tagsAdd">
                   <span class="form-group">
@@ -62,7 +67,7 @@
                                         <a href="/tags/<%= tags[i].tag_name %>"><%= tags[i].tag_name %></a>
                                     </td>
                                     <td><a type="button" name="edit" class="btn btn-default" href="/tags/edit/<%= tags[i].tag_name %>">Edit</a></td>
-                                    <td><a type="button" name="Delete" class="btn btn-danger" href="/tags/delete/<%= tags[i].tag_name %>">Delete</a></td>
+                                    <td><a type="button" name="Delete" class="btn btn-danger stage_delete" href="/tags/delete/<%= tags[i].tag_name %>">Delete</a></td>
                                 </tr>
                                 <% } %>
                         </tbody>

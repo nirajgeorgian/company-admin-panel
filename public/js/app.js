@@ -176,6 +176,9 @@ $(function() {
 $(function() {
   $('.stage_delete').on('click', function(e) {
     // e.preventDefault()
-    confirm("Do you really want to delete ?")
+    var ans = confirm("Do you really want to delete ?")
+      if(!ans) {
+        e.preventDefault()
+      }
   })
 })

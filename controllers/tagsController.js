@@ -83,7 +83,6 @@ module.exports = {
   editUserTag: (req, res, next) => {
       tagRoute.find({}, (err, data) => {
         if (err) return next(err)
-        if(data.length != 0) {
           var tagData = new tagRoute()
           tagData.tag_name = req.body.tagList
           tagRoute.findOne({tag_name: req.body.tagList}, (err, tagDataFound) => {
@@ -132,7 +131,6 @@ module.exports = {
               })
             }
           })
-        }
       })
   },
   editOnlyTags: (req, res, next) => {
